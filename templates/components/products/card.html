@@ -25,7 +25,11 @@
                     lazyload=theme_settings.lazyload_mode
                     default_image=theme_settings.default_image_product
                 }}
+                {{#if out_of_stock_message }}
+                    <div class="card-text card-out-of-stock" data-product-id="{{id}}">{{out_of_stock_message}}</div>
+                {{/if}}
             </div>
+            
         </a>
 
         <figcaption class="card-figcaption">
@@ -71,8 +75,14 @@
                 </span>
             </p>
         {{/and}}
+        {{#if stock_level}}
+             <p class="card-text" data-test-info-type="stockLevel">Current Stock: {{stock_level}}</p>
+        {{/if}}
+        {{#if low_stock_level}}
+             <p class="card-text card-stock" data-test-info-type="lowStockLevel">Low Stock: {{low_stock_level}}</p>
+        {{/if}}
         {{#if brand.name}}
-            <p class="card-text" data-test-info-type="brandName">{{brand.name}}</p>
+            <p class="card-text card-low-stock" data-test-info-type="brandName">{{brand.name}}</p>
         {{/if}}
         <h4 class="card-title">
             <a href="{{url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}>{{name}}</a>
